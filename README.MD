@@ -60,3 +60,5 @@ random(0, 1, true, 3);           // float in (0,1) excluding borders | 0 < N < 1
 ## License
 
 MIT © [Andrei Kobelev (@akb2)](https://github.com/akb2)
+
+[Github repository](https://github.com/akb2/math)
