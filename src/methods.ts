@@ -54,13 +54,17 @@ export const ceil = (value: number, precision: number = 0): number => {
  * @param {number} [precision=0] Number of decimal places, for example: [precision:2] => 10.26
  * @returns New random number
  */
-export const random = (min: number, max: number, noBorder: boolean = false, precision: number = 0) => {
-  const border: number = noBorder ? 1 / Math.pow(10, precision) : 0;
+export const random = (min: number, max: number, exclusive: boolean = false, precision: number = 0) => {
+  if (min < max && min > -Infinity && max < Infinity) {
+    const border: number = exclusive ? 1 / Math.pow(10, precision) : 0;
 
-  min = min + border;
-  max = max - border;
+    min = min + border;
+    max = max - border;
 
-  return round(Math.random() * (max - min) + min, precision);
+    return round(Math.random() * (max - min) + min, precision);
+  }
+
+  return NaN;
 };
 
 /**
@@ -70,4 +74,6 @@ export const random = (min: number, max: number, noBorder: boolean = false, prec
  * @param min The minimum allowable value
  * @returns The adjusted value, constrained within the specified range
  */
-export const clamp = (value: number, max = Infinity, min = 0) => Math.min(Math.max(value, min), max);
+export const clamp = (value: number, max = Infinity, min = 0) => max > min
+  ? Math.min(Math.max(value, min), max)
+  : NaN;
