@@ -1,12 +1,12 @@
 /**
  * Rounding floating-point numbers
  * @param {number} value Number requiring rounding
- * @param {number} [afterDotNum=0] Number of decimal places
+ * @param {number} [precision=0] Number of decimal places
  * @returns {number} Rounded value
  */
-export const round = (value: number, afterDotNum: number = 0): number => {
-  if (afterDotNum > 0) {
-    const sqrt: number = Math.pow(10, afterDotNum);
+export const round = (value: number, precision: number = 0): number => {
+  if (precision > 0) {
+    const sqrt: number = Math.pow(10, precision);
 
     return Math.round((value * sqrt)) / sqrt;
   }
@@ -17,12 +17,12 @@ export const round = (value: number, afterDotNum: number = 0): number => {
 /**
  * Rounding down
  * @param {number} value Number requiring rounding
- * @param {number} [afterDotNum=0] Number of decimal places
+ * @param {number} [precision=0] Number of decimal places
  * @returns {number} Rounded value
  */
-export const floor = (value: number, afterDotNum: number = 0): number => {
-  if (afterDotNum > 0) {
-    const sqrt: number = Math.pow(10, afterDotNum);
+export const floor = (value: number, precision: number = 0): number => {
+  if (precision > 0) {
+    const sqrt: number = Math.pow(10, precision);
 
     return Math.floor((value * sqrt)) / sqrt;
   }
@@ -33,14 +33,14 @@ export const floor = (value: number, afterDotNum: number = 0): number => {
 /**
  * Rounding up
  * @param {number} value Number requiring rounding
- * @param {number} [afterDotNum=0] Number of decimal places
+ * @param {number} [precision=0] Number of decimal places
  * @returns {number} Rounded value
  */
-export const ceil = (value: number, afterDotNum: number = 0): number => {
-  if (afterDotNum > 0) {
-    const sqrt: number = Math.pow(10, afterDotNum);
+export const ceil = (value: number, precision: number = 0): number => {
+  if (precision > 0) {
+    const factor: number = Math.pow(10, precision);
 
-    return Math.ceil((value * sqrt)) / sqrt;
+    return Math.ceil((value * factor)) / factor;
   }
 
   return Math.ceil(value);
@@ -51,16 +51,16 @@ export const ceil = (value: number, afterDotNum: number = 0): number => {
  * @param {number} min Minimum number
  * @param {number} max Maximum number
  * @param {number} [noBorder=false] TRUE, to exclude min and max values from the result
- * @param {number} [afterDotNum=0] Number of decimal places, for example: [afterDotNum:2] => 10.26
+ * @param {number} [precision=0] Number of decimal places, for example: [precision:2] => 10.26
  * @returns New random number
  */
-export const random = (min: number, max: number, noBorder: boolean = false, afterDotNum: number = 0) => {
-  const border: number = noBorder ? 1 / Math.pow(10, afterDotNum) : 0;
+export const random = (min: number, max: number, noBorder: boolean = false, precision: number = 0) => {
+  const border: number = noBorder ? 1 / Math.pow(10, precision) : 0;
 
   min = min + border;
   max = max - border;
 
-  return round(Math.random() * (max - min) + min, afterDotNum);
+  return round(Math.random() * (max - min) + min, precision);
 };
 
 /**
