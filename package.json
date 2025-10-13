@@ -1,6 +1,6 @@
 {
   "name": "@akb2/math",
-  "version": "1.1.0",
+  "version": "1.1.0-002",
   "description": "The little mathematic library for TypeScript",
   "type": "module",
   "main": "./dist/index.cjs",
