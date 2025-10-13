@@ -20,41 +20,55 @@ import { ceil, clamp, floor, random, round } from "@akb2/math";
 ### ceil
 
 ```ts
-ceil(10.123, 2);    // 10.13
-ceil(3.141, 1);     // 3.2
-ceil(7.1);          // 8
+ceil(10.123, 2);               // 10.13
+ceil(3.151, 1);                // 3.2
+ceil(7.1, 0);                  // 8
+ceil(3.141592653589793, 3);    // 3.142
+ceil(1000000.1234567891, 10);  // 1000000.123456789
+ceil(56.111111111111114, 5);   // 56.11112
 ```
 
 ### clamp
 
 ```ts
-clamp(15, 10, 0);   // 10  (too high)
-clamp(-5, 10, 0);   // 0   (too low)
-clamp(7, 10, 0);    // 7   (within range)
+clamp(15, 10, 0);                           // 10 (too hight)
+clamp(-5, 10, 0);                           // 0 (too low)
+clamp(7, 10, 0);                            // 7 (within range)
+clamp(3.141592653589793, 3.1416, 3.1415);   // 3.141592653589793 (within range)
+clamp(50, -10, 10);                         // NaN (incorrect range)
+clamp(-99, 6, -6);                          // -6 (too low)
 ```
 
 ### floor
 
 ```ts
-floor(10.987, 2);   // 10.98
-floor(3.999, 1);    // 3.9
-floor(5.7);         // 5
+floor(10.123, 2);                // 10.12
+floor(3.151, 1);                 // 3.1
+floor(7.1, 0);                   // 7
+floor(3.141592653589793, 3);     // 3.141
+floor(1000000.1234567891, 10);   // 1000000.123456789
+floor(56.111111111111114, 5);    // 56.11111
 ```
 
 ### round
 
 ```ts
-round(10.256, 2);   // 10.26
-round(3.14159, 3);  // 3.142
-round(7.5);         // 8
+round(10.123, 2);               // 10.12
+round(3.151, 1);                // 3.2
+round(7.1, 0);                  // 7
+round(3.141592653589793, 3);    // 3.142
+round(1000000.1234567891, 10);  // 1000000.123456789
+round(56.111111111111114, 5);   // 56.11111
 ```
 
 ### random
 
 ```ts
-random(0, 10);                   // integer | 0 <= N <= 10 | e.g. 7
-random(1.5, 5.5, false, 2);      // float with 2 decimals | 1.5 <= N <= 5.5 | e.g. 3.27
-random(0, 1, true, 3);           // float in (0,1) excluding borders | 0 < N < 1 | e.g. 0.428
+random(0, 10, false, 0);                // 0 <= 4 <= 10
+random(1.5, 5.5, false, 2);             // 1.5 <= 1.52 <= 5.5
+random(0, 1, true, 3);                  // 0 < 0.88 < 1
+random(-1000, 1000, false, 0);          // -1000 <= 230 <= 1000
+random(-Infinity, Infinity, true, 6);   // NaN (incorrect ranges)
 ```
 
 ## License
